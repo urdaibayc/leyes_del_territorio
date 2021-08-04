@@ -129,8 +129,8 @@ def home():
 
 ### CREATE RESULT ROUTE ###############################
 
-@app.route("/<edo>", methods=["GET"])
-def search(edo):
+@app.route("/<estado>", methods=["GET"])
+def search(estado):
 	return render_template("search.html")
 
 
@@ -167,21 +167,30 @@ def add_str():
 	return render_template('add.html', form=form)
 
 
+### LIST STATES ROUTE #######################################
 
+@app.route("/states", methods=['GET'])
+def get_states():
 
-
+	estados = Estado.query.all()
+	return render_template('list_estados.html', estados=estados)
 
 
 
 ### DELETE ROUTE #######################################
 
-@app.route("/del", methods=['GET','POST'])
+@app.route("/delete", methods=['GET','POST'])
 def del_str():
 
 	form = DelForm()
 	if form.validate_on_submit():
-		str_to_delete = forms.name.data
-	pass
+		id = form.id.data
+		estado = Estado.query.get(id)
+		db.session.delete(estado)
+		db.session.commit()
+		return redirect(url_for('list_estados'))
+	return render_template('delete.html', form=form)
+	
 
 
 
