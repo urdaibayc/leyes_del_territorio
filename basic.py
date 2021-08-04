@@ -1,6 +1,6 @@
 import os 
 
-from forms import AddForm, DeleteForm
+from forms import AddForm, DelForm
 
 from flask import (Flask, redirect, url_for, 
 	render_template, session)
@@ -11,6 +11,10 @@ from flask_migrate import Migrate
 
 
 
+
+###############################################################################
+######### INSTANCIATE FLASK APP ###############################################
+###############################################################################
 
 ########## SET & CONFIGURE FLASK ######################
 
@@ -27,8 +31,9 @@ db = SQLAlchemy(app)
 Migrate(app,db)
 
 
-
+###############################################################################
 ######### MODELS ##############################################################
+###############################################################################
 
 class Estado(db.Model):
 	__tablename__ = 'estados'
@@ -80,7 +85,6 @@ class Ley(db.Model):
 	def __repr__(self):
 		return f" -> {self.id} -> prioridad {self.pri} reforma {self.ref}"
 
-
 class Materia(db.Model):
 	__tablename__ = 'materias'
 
@@ -101,11 +105,11 @@ class Materia(db.Model):
 		return f"abr -> {self.abr} -> {self.name} "
 
 
-
+###############################################################################
 ########### VIEWS FUNCTIONS ###################################################
+###############################################################################
 
-
-### CREATE HOME ROUTE #################################
+### HOME ROUTE ########################################
 
 @app.route("/", methods=["POST", "GET"])
 def home():
@@ -123,14 +127,18 @@ def home():
 	return render_template("home.html", form=form)
 
 
-######### CREATE RESULT ROUTE #########################
+### CREATE RESULT ROUTE ###############################
 
-@app.route("/<edo>")
+@app.route("/<edo>", methods=["GET"])
 def search(edo):
 	return render_template("search.html")
 
-######### CREATE PRIVATE ROUTES ###############################################
+
+### CREATE PRIVATE ROUTES #############################
+#-----------------------------------------------------#
 # a = False
+
+### LOGIN ROUTE #######################################
 
 @app.route("/login")
 def login():
@@ -141,13 +149,39 @@ def login():
 	# return redirect(url_for("home"))
 	pass 
 
+
+### ADD ROUTE #######################################
+
 @app.route("/add", methods=['GET','POST'])
 def add_str():
 
 	form = AddForm()
 	if form.validate_on_submit():
-		str_to_add = 
+		str_to_add = form.name.data
 
+		new_string = Estado(id, nombre)
+		db.session.add(str_to_add)
+		db.session.commit()
+
+		return redirect(url_for('list_estados'))
+	return render_template('add.html', form=form)
+
+
+
+
+
+
+
+
+### DELETE ROUTE #######################################
+
+@app.route("/del", methods=['GET','POST'])
+def del_str():
+
+	form = DelForm()
+	if form.validate_on_submit():
+		str_to_delete = forms.name.data
+	pass
 
 
 

@@ -56,5 +56,5 @@ class AddForm(FlaskForm):
 class DelForm(FlaskForm):
 
 	id = IntegerField('Id int to delete:')
-	# name = StringField('str to del:')
+	name = StringField('str to del:')
 	submit = SubmitField('Delete Id')
