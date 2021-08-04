@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+	
+<p>Esta página permite a los visitantes identificar las legislaciones de su interés a partir de dos elementos:</p>
+<ul>
+	<li>Entidad federativa</li>
+	<li>Materia legislativa</li>
+</ul>
+<br>
+
+<p>
+{% if estado and materia %}
+el estado es {{estado}}
+la materia es {{materia}}
+select a new one in the form below to update
+
+{% else %}
+selecciona el estado y materia legislativa a consultar
+
+{% endif %}
+</p>
+
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.estado.label }}{{ form.estado() }}
+	<br>
+	{{ form.materia.label }}{{ form.materia() }}
+	<br>
+	{{ form.submit() }}
+
+
+
+</form>
+
+{% endblock %}
