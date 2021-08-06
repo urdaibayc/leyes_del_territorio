@@ -1,12 +1,11 @@
 import os 
 
-from forms import AddForm, DelForm
+from forms import AddForm, DelForm, ConsultaForm
 
 from flask import (Flask, redirect, url_for, 
 	render_template, session)
-from flask_sqlachemy import SQLAlchemy
-from flask_migrate import Migrate 
-
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 
 
@@ -26,7 +25,7 @@ app.config['SECRET_KEY'] = ';LSDJ A;LSDJ'
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///'+os.path.join(base_dir,'db.sqlite3') 
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///'+os.path.join(basedir,'db.sqlite3') 
 db = SQLAlchemy(app)
 Migrate(app,db)
 
@@ -38,10 +37,10 @@ Migrate(app,db)
 class Estado(db.Model):
 	__tablename__ = 'estados'
 	
-	id = db.Colum(db.Text, 
+	id = db.Column(db.Text, 
 				primary_key = True
 				)
-	nombre = db.Colum(db.Text)
+	nombre = db.Column(db.Text)
 	leyes = db.relationship('leyes', 
 							lazy='select',
 							backref=db.backref('estados', lazy='joined'),
@@ -57,20 +56,19 @@ class Estado(db.Model):
 class Ley(db.Model):
 	__tablename__ = 'leyes'
 	
-	id = db.Colum(db.Integer, 
+	id = db.Column(db.Integer, 
 				primary_key = True
 				)
-	prioridad = db.Colum(db.Float)
-	nombre = db.Colum(db.Text)
-	publicacion = db.Colum(db.Integer)
-	reforma = db.Colum(db.Integer)
-	url = db.Colum(db.Text)
-	estado_id = db.Colum(db.Text,
-						db.foreingnKey('estados.id'), 
+	prioridad = db.Column(db.Float)
+	nombre = db.Column(db.Text)
+	publicacion = db.Column(db.Integer)
+	reforma = db.Column(db.Integer)
+	url = db.Column(db.Text)
+	estado_id = db.Column(db.Text,
+						db.ForeignKey('estados.id'), 
 						nullable=False,
 						)
-	materias_id = db.Colum(db.Text,
-							db.foreingnKey('materias.id'), 
+	materias_id = db.Column(db.Text, db.ForeignKey('materias.id'),
 							nullable=False,
 							)
 
@@ -88,12 +86,12 @@ class Ley(db.Model):
 class Materia(db.Model):
 	__tablename__ = 'materias'
 
-	id = db.Colum(db.Text,
-				primary_key
+	id = db.Column(db.Text,
+				primary_key = True
 				)
-	nombre = db.Colum(db.Text)
+	nombre = db.Column(db.Text)
 	leyes = db.relationship('leyes', 
-							lazy='select'
+							lazy='select',
 							backref=db.backref('materias', lazy='joined'),
 							)
 

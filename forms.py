@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, StringField
+from wtforms import SubmitField, SelectField, StringField, IntegerField
 from wtforms.validators import DataRequired
 
 class ConsultaForm(FlaskForm):
