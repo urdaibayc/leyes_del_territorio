@@ -2,6 +2,15 @@
 
 {% block content %}
 
+<h1>Remove content?</h1>
+<p>has something changed?</p>
+<p>fill in the Id.</p>
 
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.id.label }}{{ form.id() }}
+	<br>
+	{{ form.submit() }}
+</form>
 
 {% endblock %}

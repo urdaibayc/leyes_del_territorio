@@ -2,6 +2,13 @@
 
 {% block content %}
 
+<h1>add page</h1>
+
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.add.label }}{{ form.add() }}
+	<br>	{{ form.submit() }}
+</form>
 
 
 {% endblock %}

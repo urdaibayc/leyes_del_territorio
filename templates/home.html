@@ -19,7 +19,6 @@ select a new one in the form below to update
 selecciona el estado y materia legislativa a consultar
 
 {% endif %}
-</p>
 
 <form method="POST">
 	{{ form.hidden_tag() }}
@@ -28,9 +27,6 @@ selecciona el estado y materia legislativa a consultar
 	{{ form.materia.label }}{{ form.materia() }}
 	<br>
 	{{ form.submit() }}
-
-
-
 </form>
 
 {% endblock %}

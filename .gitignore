@@ -2,3 +2,5 @@ static/
 todo.txt
 venv/
 __pycache__/
+migrations/
+db.sqlite3

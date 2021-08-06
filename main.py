@@ -7,10 +7,6 @@ from flask import (Flask, redirect, url_for,
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-
-
-
-
 ###############################################################################
 ######### INSTANCIATE FLASK APP ###############################################
 ###############################################################################
@@ -131,31 +127,33 @@ def home():
 
 ### CREATE 	USER_QUERY ROUTE ##########################
 
-@app.route("/<user_query>", methods=["GET"])
-def search(estado):
-	return render_template("search.html")
+@app.route("/user_query", methods=["GET", "POST"])
+def user_query():
+	"""Get and query string input from the client."""
+	ent = Estado.query.all()
+	return render_template("user_query.html", ent=ent)
 
 
 ### CREATE PRIVATE ROUTES #############################
 #-----------------------------------------------------#
-# a = False
+a = False
 
 ### LOGIN ROUTE #######################################
 
 @app.route("/login")
 def login():
-	# if a:
-	# 	return redirect(url_for("/login/<usr>"))
-	# else:
-	# 	return redirect(url_for("home"))
-	# return redirect(url_for("home"))
-	pass 
+	"""Route to log in a user."""
+	if a:
+		return redirect(url_for("/login/<usr>"))
+	else:
+		return redirect(url_for("home"))
+	return redirect(url_for("login.html"))
 
 
 ### ADD ROUTE #######################################
 
 @app.route("/add", methods=['GET','POST'])
-def add_estado():
+def add():
 	"""Partiendo de un str, Agrega un estado.
 	Args: (str)
 	"""
@@ -175,17 +173,17 @@ def add_estado():
 ### LIST STATES ROUTE #######################################
 
 @app.route("/list_ent ", methods=['GET'])
-def get_states():
+def list_ent():
 	"""Obtiene los estsdos existentes."""
-	estados = Estado.query.all()
-	return render_template('list_estados.html', estados=estados)
+	ent = Estado.query.all()
+	return render_template('list_estados.html', ent=ent)
 
 
 
 ### DELETE ROUTE #######################################
 
 @app.route("/delete", methods=['GET','POST'])
-def del_estado():
+def delete():
 	"""Borra un estado mediante una ID."""
 
 	form = DelForm()
@@ -196,9 +194,14 @@ def del_estado():
 		db.session.commit()
 		return redirect(url_for('list_estados'))
 	return render_template('delete.html', form=form)
+
 	
+### DELETE ROUTE #######################################
 
-
+@app.route("/signup", methods=['GET','POST'])
+def signup():
+	"""Crear una cuenta."""
+	return render_template('signup.html', form=form)
 
 
 ######### RUN APP #############################################################
