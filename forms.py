@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, StringField, IntegerField
 from wtforms.validators import DataRequired
 
-class ConsultaForm(FlaskForm):
+class ConsultaUsuario(FlaskForm):
 	estado = SelectField(
 				'Entidad federativa',
 				choices=[
@@ -48,13 +48,13 @@ class ConsultaForm(FlaskForm):
 
 
 class AddForm(FlaskForm):
-
+	"""Adds the string privided in a form."""
 	name = StringField('str to add:')
 	submit = SubmitField('Add str')
 
 
 class DelForm(FlaskForm):
-
+	"""From an ID deletes a str provided in a form."""
 	id = IntegerField('Id int to delete:')
 	name = StringField('str to del:')
 	submit = SubmitField('Delete Id')
