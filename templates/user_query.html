@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Esta es la info:</h1>
+
+<ul>
+	<li>Estado: {{session['estado']}} </li>
+	<li>Materia: {{session['materia']}} </li>
+</ul>
+
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Adipisicing est ut aute minim occaecat ullamco officia irure dolore laboris qui voluptate consectetur deserunt nostrud fugiat sint proident. Sit irure aliquip proident consequat eu ut laborum consequat sunt culpa voluptate aliqua proident ut in minim reprehenderit elit.
+      Duis sed proident eiusmod id commodo laboris consectetur non in fugiat mollit excepteur sint consequat mollit.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Dolor enim ut in labore consectetur veniam ut ut. Ea ullamco deserunt incididunt aute ullamco aute dolor quis deserunt non sint. Consequat dolor non voluptate veniam laboris minim officia ex. Labore in reprehenderit in velit in occaecat qui ut sit in cupidatat in. In ea dolore mollit eiusmod proident anim irure exercitation minim cupidatat.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Ut excepteur laborum excepteur dolore ut adipisicing id aute adipisicing eu consectetur commodo laboris laboris. Officia aliqua commodo ut in irure commodo officia sint. Do nostrud cupidatat in reprehenderit non ea deserunt in aliqua excepteur ad non enim culpa nostrud dolore. Duis exercitation exercitation incididunt officia in enim voluptate nulla ullamco dolore. Sed nulla ea sit non sit sed excepteur adipisicing culpa sit eiusmod. Ex enim et esse ullamco labore sunt occaecat sunt. Lorem ipsum dolor proident nulla reprehenderit duis nostrud id ea amet nisi. Nostrud veniam eu sit sed ea non occaecat excepteur velit aute dolore deserunt.</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
