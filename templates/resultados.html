@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ session['uinput'][0] }} </h1>
+    <h1>{{ session['uinput'][1] }} </h1>
+    <br>
+
+    {% for l in range(session['leyes']|length) %}
+      {% if l%3 == 0 and l == 0 %}
+        <div class="row">
+          <div class="col">
+            <div class="card w-75" style="width: 18rem;">
+              <img src="{{url_for('static', filename='mapa2.png')}}" 
+              class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ session['data']['ley'][session['leyes'][l]] }}</h5>
+                <p class="card-text"></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Publicación: {{ session['data']['publicacion'][session['leyes'][l]] }}</li>
+                <li class="list-group-item">Reforma: {{ session['data']['reforma'][session['leyes'][l]] }} </li>
+              </ul>
+              <div class="card-body d-grid gap-2">
+                <a href="{{ session['data']['URL'][session['leyes'][l]] }}" class="btn btn-outline-dark stretched-link">Ir al sitio</a>
+              </div>
+            </div>
+          </div>
+      {% elif l%3 == 0 and l > 0  %}
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="card w-75" style="width: 18rem;">
+              <img src="{{url_for('static', filename='mapa2.png')}}" 
+              class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ session['data']['ley'][session['leyes'][l]] }}</h5>
+                <p class="card-text"></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Publicación: {{ session['data']['publicacion'][session['leyes'][l]] }}</li>
+                <li class="list-group-item">Reforma: {{ session['data']['reforma'][session['leyes'][l]] }} </li>
+              </ul>
+              <div class="card-body d-grid gap-2">
+                <a href="{{ session['data']['URL'][session['leyes'][l]] }}" class="btn btn-outline-dark stretched-link">Ir al sitio</a>
+              </div>
+            </div>
+          </div>
+      {% else %}
+          <div class="col">
+            <div class="card w-75" style="width: 18rem;">
+              <img src="{{url_for('static', filename='mapa2.png')}}" 
+              class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ session['data']['ley'][session['leyes'][l]] }}</h5>
+                <p class="card-text"></p>
+              </div>
+              <ul class="list-group list-group-flush">
+               <li class="list-group-item">Publicación: {{ session['data']['publicacion'][session['leyes'][l]] }}</li>
+                <li class="list-group-item">Reforma: {{ session['data']['reforma'][session['leyes'][l]] }} </li>
+              </ul>
+              <div class="card-body d-grid gap-2">
+                <a href="{{ session['data']['URL'][session['leyes'][l]] }}" class="btn btn-outline-dark stretched-link">Ir al sitio</a>
+              </div>
+            </div>
+          </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <br>
+
+
+
+
+
+
+{% endblock %}

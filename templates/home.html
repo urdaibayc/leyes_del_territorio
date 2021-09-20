@@ -1,89 +1,38 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block text %}
+	<div class="container">
+		<p class="fs-4 text-center">
+		  En esta aplicación web podrá encontrar fácilmente todas las legislaciones relacionadas con desarrollo urbano por entidad federativa o nivel nacional. 
+		</p>
+		<p class="fs-4 text-center">
+		  Para realizar su búsqueda elija en las listas desplegables en la barra de navegación la entidad y materia de interés y haga click en enviar.
+		</p>
+	</div>
 	
-<p>Esta página permite a los visitantes identificar las legislaciones de su interés a partir de dos elementos:</p>
-<ul>
-	<li>Entidad federativa</li>
-	<li>Materia legislativa</li>
-</ul>
-<br>
+{% endblock %}
 
-<p>
-{% if estado and materia %}
-el estado es {{estado}}
-la materia es {{materia}}
-select a new one in the form below to update
+{% block q%}
 
-{% else %}
-selecciona el estado y materia legislativa a consultar
+	{% for message in get_flashed_messages() %}
+	<h4>{{ message }}</h4>
+	{% endfor %}
 
-{% endif %}
-
-<form method="POST">
-	{{ form.hidden_tag() }}
-	<div class="input-group mb-3">
-
-
-	  <label class="input-group-text" for="inputGroupEstado">{{ form.estado.label() }}</label>
-	  <select class="form-select" id="inputGroupEstado">
-	    <option selected>Choose...</option>
-	    <option value="1">One</option>
-	    <option value="2">Two</option>
-	    <option value="3">Three</option>
-	  </select>
-	</div>
-
-
-
-
-
-		
-		{{ form.estado }}
-
-		<input type="" class="form-control" id="select-field-ent" placeholder="Entidad federativa">
-
-
-
-
-
-
-
-
-
-
-
-	</div>
-			
-
+	<div class="container">	
 	<br>
-	{{ form.materia.label }}{{ form.materia() }}
-	<br>
-	{{ form.submit() }}
-</form>
-
-
-<!-- 
-  <span class="input-group-text" id="basic-addon1">@</span>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-
- -->
-
-
-
-
-<!-- <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
-<label for="exampleDataList" class="form-label">Datalist example</label>
-<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-<datalist id="datalistOptions">
-  <option value="San Francisco">
-  <option value="New York">
-  <option value="Seattle">
-  <option value="Los Angeles">
-  <option value="Chicago">
-</datalist>
-
-
- -->
-
+    <form class="" method="POST">
+      {{ form.hidden_tag() }}
+      {{ form.estado.label }} 
+      <br> 
+      {{ form.estado(class="form-control") }}
+      <br>
+      {{ form.materia.label }}
+      <br>
+      {{ form.materia(class="form-control") }}
+      <br>
+      <div class="d-grid gap-2">
+        {{ form.submit(class="btn btn-outline-dark") }}   
+      </div>
+    </form>
+	</div>
 {% endblock %}
