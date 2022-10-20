@@ -13,7 +13,7 @@ from math import ceil
 ########## SET & CONFIGURE FLASK ######################
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '.LSDJ#AknYhSCj6KHVqm4nL468SDJ'
+app.config['SECRET_KEY'] = ''
 
 ###############################################################################
 ######### DATA LOADING ########################################################
